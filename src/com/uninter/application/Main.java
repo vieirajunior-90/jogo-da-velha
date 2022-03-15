@@ -11,6 +11,8 @@ import java.util.List;
     data: 15/03/2022
     descrição: Jogo da velha com IA implementando os conceitos de classes aprendido durante a disciplina de
     Programação Orientada a Objetos
+
+    A mini-documentação do código está na raiz do projeto em um README.md
 */
 
 public class Main {

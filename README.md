@@ -37,3 +37,4 @@ Foram implementadas as seguintes funcionalidades:
 
 
 - Computador C: a diferença desse é que há um contador para definir qual casa ele vai tentar preencher. O contador começa em 0, sempre que o contador % 2 == 0, ele tenta preencher as casas ímpares, quando o contador % 2 == 1, ele tenta preencher as casas pares. Também recebe um tabuleiro como parâmetro em seu construtor.
+
