@@ -1,8 +1,6 @@
 package com.uninter.application;
 
-import com.uninter.entities.Computador;
-import com.uninter.entities.Jogador;
-import com.uninter.entities.Tabuleiro;
+import com.uninter.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,61 +22,64 @@ public class Main {
         System.out.println("=============================\n");
 
         Tabuleiro tabuleiro = new Tabuleiro();
-        tabuleiro.mostrarTabuleiro();
+        tabuleiro.modelo();
 
         Jogador jogador = new Jogador();
-        Computador Computador = new Computador();
+        Computador computador = new ComputadorC(tabuleiro);
 
 
         // Fluxo principal do programa
+        boolean isGameOver = false;
         while(true) {
-            if(isWinner) {
+            if(isWinner || isGameOver) {
                 break;
             }
 
-
             while(true) {
-               int posicaoJogador = jogador.realizarJogada();
-                boolean condicaoJogador = tabuleiro.verificarPosicao(posicaoJogador);
+               try {
+                   int posicaoJogador = jogador.realizarJogada();
+                    boolean condicaoJogador = tabuleiro.verificarPosicao(posicaoJogador);
 
-                if(condicaoJogador) {
-                    tabuleiro.marcarPosicao(posicaoJogador, jogador.PECA_JOGADOR);
-                    jogador.adicionarPosicao(posicaoJogador);
-                    isWinner = tabuleiro.condicaoDeVitoria(jogador.getJogadorPosicoes());
+                    if(condicaoJogador) {
+                        tabuleiro.marcarPosicao(posicaoJogador, jogador.PECA_JOGADOR);
+                        jogador.adicionarPosicao(posicaoJogador);
+                        isWinner = tabuleiro.condicaoDeVitoria(jogador.getJogadorPosicoes());
 
-                    if(isWinner) {
-                        tabuleiro.mostrarTabuleiro();
-                        System.out.println("\nParabéns, você venceu!");
+                        if(isWinner) {
+                            tabuleiro.mostrarTabuleiro();
+                            System.out.println("\nPARABENS! VOCÊ VENCEU!");
+                            break;
+                        }
+                        else if(jogador.getJogadorPosicoes().size() + computador.getComputadorPosicoes().size() == 9) {
+                            System.out.println("DEU VELHA!");
+                            isGameOver = true;
+                        }
                         break;
-                    }
-                    else if(jogador.getJogadorPosicoes().size() + Computador.getComputadorPosicoes().size() == 9) {
-                        System.out.println("Deu Velha!");
-                        break;
-                    }
 
-                    break;
-
-                } else {
-                    System.out.println("Posição inválida, tente novamente");
-                }
+                    } else {
+                        System.out.println("POSIÇÃO INVÁLIDA!");
+                    }
+               } catch (Exception e) {
+                       System.out.println("VOCÊ NÃO PODE INSERIR LETRAS, APENAS NÚMEROS DE 1 A 9!");
+               }
             }
 
             while (true) {
-                if(isWinner) {
+                if(isWinner || isGameOver) {
                     break;
                 }
 
-                int posicaoComputador = Computador.realizarJogada();
+                int posicaoComputador = computador.realizarJogada();
                 boolean condicaoComputador = tabuleiro.verificarPosicao(posicaoComputador);
 
                 if(condicaoComputador) {
-                    tabuleiro.marcarPosicao(posicaoComputador, Computador.PECA_COMPUTADOR);
-                    Computador.adicionarPosicao(posicaoComputador);
-                    isWinner = tabuleiro.condicaoDeVitoria(Computador.getComputadorPosicoes());
+                    tabuleiro.marcarPosicao(posicaoComputador, computador.PECA_COMPUTADOR);
+                    computador.adicionarPosicao(posicaoComputador);
+                    isWinner = tabuleiro.condicaoDeVitoria(computador.getComputadorPosicoes());
 
                     if(isWinner) {
                         tabuleiro.mostrarTabuleiro();
-                        System.out.println("\nLamento! Você perdeu!");
+                        System.out.println("\nVOCÊ PERDEU!");
                         break;
                     }
                     break;

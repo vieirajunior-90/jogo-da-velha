@@ -7,28 +7,28 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Tabuleiro {
-    private static Character[][] tabuleiro;
+    private static String[][] tabuleiro;
 
     public Tabuleiro() {
-        tabuleiro = new Character[][]
-                {{' ', '|', ' ', '|', ' '},
-                {'-', '+', '-', '+', '-'},
-                {' ', '|', ' ', '|', ' '},
-                {'-', '+', '-', '+', '-'},
-                {' ', '|', ' ', '|', ' '}};
+        tabuleiro = new String[][]
+                {{"   ", "|", "   ", "|", "   "},
+                {"---", "+", "---", "+", "---"},
+                {"   ", "|", "   ", "|", "   "},
+                {"---", "+", "---", "+", "---"},
+                {"   ", "|", "   ", "|", "   "}};
     }
 
     public void mostrarTabuleiro(){
-        for (Character[] row : tabuleiro) {
-            for (Character c : row) {
+        for (String[] row : tabuleiro) {
+            for (String c : row) {
                 System.out.print(c);
             }
             System.out.println();
         }
     }
 
-    public void marcarPosicao(int posicao, Character jogador){
-        Character symbol = jogador;
+    public void marcarPosicao(int posicao, String jogador){
+        String symbol = jogador;
 
         switch (posicao) {
             case 1:
@@ -66,23 +66,23 @@ public class Tabuleiro {
     public boolean verificarPosicao(int posicao){
         switch (posicao) {
             case 1:
-                return tabuleiro[0][0] == ' ';
+                return tabuleiro[0][0] == "   ";
             case 2:
-                return tabuleiro[0][2] == ' ';
+                return tabuleiro[0][2] == "   ";
             case 3:
-                return tabuleiro[0][4] == ' ';
+                return tabuleiro[0][4] == "   ";
             case 4:
-                return tabuleiro[2][0] == ' ';
+                return tabuleiro[2][0] == "   ";
             case 5:
-                return tabuleiro[2][2] == ' ';
+                return tabuleiro[2][2] == "   ";
             case 6:
-                return tabuleiro[2][4] == ' ';
+                return tabuleiro[2][4] == "   ";
             case 7:
-                return tabuleiro[4][0] == ' ';
+                return tabuleiro[4][0] == "   ";
             case 8:
-                return tabuleiro[4][2] == ' ';
+                return tabuleiro[4][2] == "   ";
             case 9:
-                return tabuleiro[4][4] == ' ';
+                return tabuleiro[4][4] == "   ";
             default:
                 return false;
         }
@@ -107,5 +107,18 @@ public class Tabuleiro {
             }
         }
         return false;
+    }
+
+    public void modelo(){
+        System.out.println(
+                "Ao jogar, você deve escolher uma das posições disponíveis no tabuleiro.\n" +
+                "Cada posição possui um número que representa a posição no tabuleiro.\n" +
+                "Caso uma posição esteja ocupada por um X ou O, você não pode escolher essa posição.\n\n" +
+                "  1 | 2 | 3 \n" +
+                " ---+---+---\n" +
+                "  4 | 5 | 6 \n" +
+                " ---+---+---\n" +
+                "  7 | 8 | 9 \n"
+        );
     }
 }

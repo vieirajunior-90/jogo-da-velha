@@ -3,13 +3,13 @@ package com.uninter.entities;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Computador {
-    public final Character PECA_COMPUTADOR = 'O';
+public abstract class Computador implements ComputadorInterface{
+    public final String PECA_COMPUTADOR = " O ";
     private ArrayList<Integer> computadorPosicoes = new ArrayList<>();
 
     public int realizarJogada(){
-        Random r = new Random();
-        return r.nextInt(9) + 1;
+
+        return 0;
     }
 
     public void adicionarPosicao(int posicao){
