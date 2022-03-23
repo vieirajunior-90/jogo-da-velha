@@ -25,6 +25,7 @@ Foram implementadas as seguintes funcionalidades:
 
 - A classe Computador onde foi implementado uma constante "O" como a peça do computador, um array para guardar as jogadas do computador e um método para jogar. Esta é uma classe abstrata, pois não pode ser instanciada.
 
+- (Update: 23/03/2022) Foi criada a classe FluxoDoJogo para mover toda a lógica que estava na classe Main, deixando assim o programa mais limpo e organizado.
 
 - Três classes herdam de Computador, sendo elas: 
 
